@@ -8,17 +8,16 @@
 Summary:	Bluetooth GObject based library
 Summary(pl):	Biblioteka do programowania urz±dzeñ Bluetooth
 Name:		libbtctl
-Version:	0.4
+Version:	0.4.1
 Release:	0.1
 License:	GPL
 Group:		Libraries
-Source0:	http://usefulinc.com/software/gnome-bluetooth/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	355782e77764fc6441363eaa59878907
-Patch0:		%{name}-python.patch
+Source0:	http://downloads.usefulinc.com/libbtctl/%{name}-%{version}.tar.gz
+# Source0-md5:	7c858214d32d76e45a87b34dd885df37
 URL:		http://usefulinc.com/software/gnome-bluetooth/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bluez-libs-devel >= 2.6
+BuildRequires:	bluez-libs-devel >= 2.8-2
 BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	gtk-doc >= 0.10
 BuildRequires:	libtool
@@ -39,7 +38,7 @@ Summary:	Header files for libbtctl library
 Summary(pl):	Pliki nag³ówkowe biblioteki libbtctl
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	bluez-libs-devel
+Requires:	bluez-libs-devel >= 2.8-2
 
 %description devel
 Header files for libbtctl library.
@@ -74,7 +73,6 @@ Wi±zania dla jêzyka Python biblioteki libbtctl.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -95,13 +93,17 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	HTML_DIR=%{_gtkdocdir}
 
+rm -f $RPM_BUILD_ROOT%{py_sitedir}/*.{la,a}
+
+%find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
