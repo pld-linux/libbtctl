@@ -1,0 +1,11 @@
+diff -Nur libbtctl-0.4.orig/src/Makefile.am libbtctl-0.4/src/Makefile.am
+--- libbtctl-0.4.orig/src/Makefile.am	2004-06-03 14:00:19.000000000 +0200
++++ libbtctl-0.4/src/Makefile.am	2004-06-12 01:34:01.000000000 +0200
+@@ -122,6 +122,6 @@
+ 
+ btctl_la_SOURCES = btctl-py.c btctl-pymodule.c
+ btctl_la_LIBADD = libbtctl.la
+-btctl_la_LDFLAGS = $(BTCTLPY_LIBS) -module
++btctl_la_LDFLAGS = $(BTCTLPY_LIBS) -module -avoid-version
+ endif
+ 
