@@ -21,7 +21,7 @@ BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	gtk-doc >= 0.10
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-BuildRequires:	python-devel >= 2.3
+BuildRequires:	python-devel >= 1:2.3
 BuildRequires:	python-pygtk-devel >= 2.2.0
 BuildRequires:	rpm-pythonprov
 Requires:	bluez-libs >= 2.8-2
