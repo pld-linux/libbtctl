@@ -39,6 +39,8 @@ Summary(pl):	Pliki nag³ówkowe biblioteki libbtctl
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	bluez-libs-devel >= 2.8-2
+Requires:	glib2-devel >= 2.0.0
+Requires:	openobex-devel
 
 %description devel
 Header files for libbtctl library.
