@@ -23,7 +23,6 @@ BuildRequires:	openobex-devel
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel >= 1:2.3
 BuildRequires:	python-pygtk-devel >= 2.2.0
-BuildRequires:	rpm-pythonprov
 Requires:	bluez-libs >= 2.8-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
