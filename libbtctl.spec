@@ -3,7 +3,6 @@
 # - mono bindings (build crashes on ppc)
 #
 
-%include	/usr/lib/rpm/macros.python
 
 Summary:	Bluetooth GObject based library
 Summary(pl):	Biblioteka do programowania urz±dzeñ Bluetooth
