@@ -3,12 +3,11 @@
 # - mono bindings (build crashes on ppc)
 #
 
-
 Summary:	Bluetooth GObject based library
 Summary(pl):	Biblioteka do programowania urz±dzeñ Bluetooth
 Name:		libbtctl
 Version:	0.4.1
-Release:	4
+Release:	5
 License:	GPL
 Group:		Libraries
 Source0:	http://downloads.usefulinc.com/libbtctl/%{name}-%{version}.tar.gz
@@ -20,6 +19,7 @@ BuildRequires:	bluez-libs-devel >= 2.8-2
 BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	gtk-doc >= 0.10
 BuildRequires:	libtool
+BuildRequires:	openobex-devel
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel >= 1:2.3
 BuildRequires:	python-pygtk-devel >= 2.2.0
