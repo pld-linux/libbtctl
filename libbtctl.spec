@@ -9,7 +9,7 @@ Summary:	Bluetooth GObject based library
 Summary(pl):	Biblioteka do programowania urz±dzeñ Bluetooth
 Name:		libbtctl
 Version:	0.4.1
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://downloads.usefulinc.com/libbtctl/%{name}-%{version}.tar.gz
@@ -25,6 +25,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	python-devel >= 2.3
 BuildRequires:	python-pygtk-devel >= 2.2.0
 BuildRequires:	rpm-pythonprov
+Requires:	bluez-libs >= 2.8-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -84,14 +85,16 @@ Wi±zania dla jêzyka Python biblioteki libbtctl.
 	--enable-shared \
 	--enable-gtk-doc \
 	--with-html-path=%{_gtkdocdir}
-%{__make}
+%{__make} \
+	pydir=%{py_sitedir}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	HTML_DIR=%{_gtkdocdir}
+	HTML_DIR=%{_gtkdocdir} \
+	pydir=%{py_sitedir}
 
 rm -f $RPM_BUILD_ROOT%{py_sitedir}/*.{la,a}
 
