@@ -8,6 +8,7 @@ Group:		Libraries
 Source0:	http://usefulinc.com/software/gnome-bluetooth/releases/%{name}-%{version}.tar.gz
 # Source0-md5:	40da31270e51c714b899247622a98d32
 URL:		http://usefulinc.com/software/gnome-bluetooth/
+BuildRequires:	automake
 BuildRequires:	bluez-sdp-devel >= 1.0
 BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	pkgconfig
@@ -23,7 +24,7 @@ Ten pakiet zawiera bibliotekê do kontrolowania urz±dzeñ Bluetooth.
 Summary:	Header files for libbtctl library
 Summary(pl):	Pliki nag³ówkowe biblioteki libbtctl
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	bluez-sdp-devel
 
 %description devel
@@ -36,7 +37,7 @@ Pliki nag³ówkowe biblioteki libbtctl.
 Summary:	Static libbtctl library
 Summary(pl):	Statyczna biblioteka libbtctl
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libbtctl library.
