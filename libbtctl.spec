@@ -1,17 +1,29 @@
-Summary:	Bluetooth controlling GObject
-Summary(pl):	GObject do kontrolowania urz±dzeñ Bluetooth
+#
+# todo:
+# - mono bindings
+#
+
+%include	/usr/lib/rpm/macros.python
+
+Summary:	Bluetooth GObject based library
+Summary(pl):	Biblioteka do programowania urz±dzeñ Bluetooth
 Name:		libbtctl
-Version:	0.3
-Release:	1
+Version:	0.4
+Release:	0.1
 License:	GPL
 Group:		Libraries
 Source0:	http://usefulinc.com/software/gnome-bluetooth/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	40da31270e51c714b899247622a98d32
+# Source0-md5:	355782e77764fc6441363eaa59878907
+Patch0:		%{name}-python.patch
 URL:		http://usefulinc.com/software/gnome-bluetooth/
 BuildRequires:	automake
 BuildRequires:	bluez-libs-devel >= 2.6
 BuildRequires:	glib2-devel >= 2.0.0
+BuildRequires:	gtk-doc >= 0.10
 BuildRequires:	pkgconfig
+BuildRequires:	python-devel >= 2.3
+BuildRequires:	python-pygtk-devel >= 2.2.0
+BuildRequires:	rpm-pythonprov
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -45,20 +57,43 @@ Static libbtctl library.
 %description static -l pl
 Statyczna biblioteka libbtctl.
 
+%package -n python-btctl
+Summary:	Python bindings for libbtctl library
+Summary(pl):	Wi±zania dla jêzyka Python biblioteki libbtctl
+Group:		Libraries/Python
+Requires:	%{name} = %{version}-%{release}
+%pyrequires_eq	python-libs
+
+
+%description -n python-btctl
+Static libbtctl library.
+
+%description -n python-btctl -l pl
+Wi±zania dla jêzyka Python biblioteki libbtctl.
+
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 cp -f /usr/share/automake/config.sub .
+%{__libtoolize}
+%{__aclocal}
+%{__autoheader}
+%{__autoconf}
+%{__automake}
 %configure \
-	--enable-shared
+	--enable-shared \
+	--enable-gtk-doc \
+	--with-html-path=%{_gtkdocdir}
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	HTML_DIR=%{_gtkdocdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -77,7 +112,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.la
 %{_includedir}/%{name}
 %{_pkgconfigdir}/*.pc
+%{_gtkdocdir}/*
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+
+%files -n python-btctl
+%defattr(644,root,root,755)
+%attr(755,root,root) %{py_sitedir}/*.so
