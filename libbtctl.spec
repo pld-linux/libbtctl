@@ -1,6 +1,6 @@
 #
 # todo:
-# - mono bindings
+# - mono bindings (build crashes on ppc)
 #
 
 %include	/usr/lib/rpm/macros.python
@@ -9,7 +9,7 @@ Summary:	Bluetooth GObject based library
 Summary(pl):	Biblioteka do programowania urz±dzeñ Bluetooth
 Name:		libbtctl
 Version:	0.4.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 Source0:	http://downloads.usefulinc.com/libbtctl/%{name}-%{version}.tar.gz
@@ -82,7 +82,7 @@ Wi±zania dla jêzyka Python biblioteki libbtctl.
 %{__autoconf}
 %{__automake}
 %configure \
-	--enable-shared \
+	--disable-mono \
 	--enable-gtk-doc \
 	--with-html-path=%{_gtkdocdir}
 %{__make} \
