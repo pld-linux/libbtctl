@@ -2,7 +2,7 @@ Summary:	Bluetooth controlling GObject
 Summary(pl):	GObject do kontrolowania urz±dzeñ Bluetooth
 Name:		libbtctl
 Version:	0.3
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://usefulinc.com/software/gnome-bluetooth/releases/%{name}-%{version}.tar.gz
