@@ -48,6 +48,7 @@ Statyczna biblioteka libbtctl.
 %setup -q
 
 %build
+cp -f /usr/share/automake/config.sub .
 %configure \
 	--enable-shared
 %{__make}
