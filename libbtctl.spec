@@ -9,7 +9,7 @@ Source0:	http://usefulinc.com/software/gnome-bluetooth/releases/%{name}-%{versio
 # Source0-md5:	40da31270e51c714b899247622a98d32
 URL:		http://usefulinc.com/software/gnome-bluetooth/
 BuildRequires:	automake
-BuildRequires:	bluez-sdp-devel >= 1.0
+BuildRequires:	bluez-libs-devel >= 2.6
 BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -25,7 +25,7 @@ Summary:	Header files for libbtctl library
 Summary(pl):	Pliki nag³ówkowe biblioteki libbtctl
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	bluez-sdp-devel
+Requires:	bluez-libs-devel
 
 %description devel
 Header files for libbtctl library.
