@@ -8,7 +8,7 @@ Summary:	Bluetooth GObject based library
 Summary(pl):	Biblioteka do programowania urz±dzeñ Bluetooth
 Name:		libbtctl
 Version:	0.4.1
-Release:	3
+Release:	4
 License:	GPL
 Group:		Libraries
 Source0:	http://downloads.usefulinc.com/libbtctl/%{name}-%{version}.tar.gz
