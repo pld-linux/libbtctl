@@ -1,4 +1,5 @@
-Summary:	libbtctl
+Summary:	Bluetooth controlling GObject
+Summary(pl):	GObject do kontrolowania urz±dzeñ Bluetooth
 Name:		libbtctl
 Version:	0.3
 Release:	0.1
@@ -7,12 +8,16 @@ Group:		Libraries
 Source0:	http://usefulinc.com/software/gnome-bluetooth/releases/%{name}-%{version}.tar.gz
 # Source0-md5:	40da31270e51c714b899247622a98d32
 URL:		http://usefulinc.com/software/gnome-bluetooth/
-BuildRequires:	bluez-sdp-devel
-Requires(post):	/sbin/ldconfig
+BuildRequires:	bluez-sdp-devel >= 1.0
+BuildRequires:	glib2-devel >= 2.0.0
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-libbtctl
+This package contains a library to control Bluetooth devices.
+
+%description -l pl
+Ten pakiet zawiera bibliotekê do kontrolowania urz±dzeñ Bluetooth.
 
 %package devel
 Summary:	Header files for libbtctl library
@@ -43,7 +48,8 @@ Statyczna biblioteka libbtctl.
 %setup -q
 
 %build
-%configure --enable-shared
+%configure \
+	--enable-shared
 %{__make}
 
 %install
@@ -59,8 +65,8 @@ rm -rf $RPM_BUILD_ROOT
 %postun	-p /sbin/ldconfig
 
 %files
-#%defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%defattr(644,root,root,755)
+%doc AUTHORS ChangeLog README
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 
 %files devel
