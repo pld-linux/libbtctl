@@ -16,10 +16,12 @@ Source0:	http://usefulinc.com/software/gnome-bluetooth/releases/%{name}-%{versio
 # Source0-md5:	355782e77764fc6441363eaa59878907
 Patch0:		%{name}-python.patch
 URL:		http://usefulinc.com/software/gnome-bluetooth/
+BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bluez-libs-devel >= 2.6
 BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	gtk-doc >= 0.10
+BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel >= 2.3
 BuildRequires:	python-pygtk-devel >= 2.2.0
@@ -64,7 +66,6 @@ Group:		Libraries/Python
 Requires:	%{name} = %{version}-%{release}
 %pyrequires_eq	python-libs
 
-
 %description -n python-btctl
 Static libbtctl library.
 
@@ -76,7 +77,6 @@ Wi±zania dla jêzyka Python biblioteki libbtctl.
 %patch0 -p1
 
 %build
-cp -f /usr/share/automake/config.sub .
 %{__libtoolize}
 %{__aclocal}
 %{__autoheader}
