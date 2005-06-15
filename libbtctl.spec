@@ -2,7 +2,7 @@
 # todo:
 # - mono bindings (build crashes on ppc)
 #
-%bcond_without	static	# don't build static library
+%bcond_without	static_libs	# don't build static library
 Summary:	Bluetooth GObject based library
 Summary(pl):	Biblioteka do programowania urz±dzeñ Bluetooth
 Name:		libbtctl
@@ -85,7 +85,7 @@ Wi±zania dla jêzyka Python biblioteki libbtctl.
 	--disable-mono \
 	--enable-gtk-doc \
 	--with-html-path=%{_gtkdocdir} \
-	%{!?with_static:--disable-static}
+	%{!?with_static_libs:--disable-static}
 %{__make} \
 	pydir=%{py_sitedir}
 
@@ -120,7 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/*.pc
 %{_gtkdocdir}/*
 
-%if %{with static}
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
