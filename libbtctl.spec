@@ -2,7 +2,9 @@
 # todo:
 # - mono bindings (build crashes on ppc)
 #
+# Conditional build:
 %bcond_without	static_libs	# don't build static library
+#
 Summary:	Bluetooth GObject based library
 Summary(pl):	Biblioteka do programowania urz±dzeñ Bluetooth
 Name:		libbtctl
