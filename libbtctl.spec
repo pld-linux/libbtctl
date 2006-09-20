@@ -8,23 +8,24 @@
 Summary:	Bluetooth GObject based library
 Summary(pl):	Biblioteka do programowania urz±dzeñ Bluetooth
 Name:		libbtctl
-Version:	0.6.0
-Release:	3
+Version:	0.8.0
+Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbtctl/0.6/%{name}-%{version}.tar.gz
-# Source0-md5:	916cb1b8054b529a8dd944bd72bb7193
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbtctl/0.8/%{name}-%{version}.tar.gz
+# Source0-md5:	a4b35a8d2c963a594fc13da5056f30e2
 URL:		http://usefulinc.com/software/gnome-bluetooth/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	bluez-libs-devel >= 2.25
-BuildRequires:	glib2-devel >= 1:2.11.4
-BuildRequires:	gtk-doc >= 1.6
+BuildRequires:	glib2-devel >= 1:2.12.3
+BuildRequires:	gtk-doc >= 1.7
+BuildRequires:	intltool >= 0.18
 BuildRequires:	libtool
 BuildRequires:	openobex-devel >= 1.2
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel >= 1:2.3
-BuildRequires:	python-pygtk-devel >= 2.9.3
+BuildRequires:	python-pygtk-devel >= 2.10.1
 Requires:	bluez-libs >= 2.25
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -40,7 +41,7 @@ Summary(pl):	Pliki nag³ówkowe biblioteki libbtctl
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	bluez-libs-devel >= 2.25
-Requires:	glib2-devel >= 1:2.11.4
+Requires:	glib2-devel >= 1:2.12.3
 Requires:	openobex-devel >= 1.2
 
 %description devel
