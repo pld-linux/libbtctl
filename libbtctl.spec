@@ -1,5 +1,4 @@
-#
-# todo:
+# TODO
 # - mono bindings (build crashes on ppc)
 #
 # Conditional build:
@@ -9,7 +8,7 @@ Summary:	Bluetooth GObject based library
 Summary(pl):	Biblioteka do programowania urz±dzeñ Bluetooth
 Name:		libbtctl
 Version:	0.6.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbtctl/0.6/%{name}-%{version}.tar.gz
@@ -88,7 +87,8 @@ Wi±zania dla jêzyka Python biblioteki libbtctl.
 	--enable-gtk-doc \
 	--with-html-path=%{_gtkdocdir} \
 	%{!?with_static_libs:--disable-static}
-%{__make} \
+
+%{__make} -j1 \
 	pydir=%{py_sitedir}
 
 %install
