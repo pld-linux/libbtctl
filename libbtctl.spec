@@ -8,19 +8,19 @@
 Summary:	Bluetooth GObject based library
 Summary(pl):	Biblioteka do programowania urz±dzeñ Bluetooth
 Name:		libbtctl
-Version:	0.8.1
+Version:	0.8.2
 Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbtctl/0.8/%{name}-%{version}.tar.gz
-# Source0-md5:	6b1fa1223e893298ef03e7ee8e27c4f2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbtctl/0.8/%{name}-%{version}.tar.bz2
+# Source0-md5:	00966e109db14f14589739a85fe00941
 URL:		http://usefulinc.com/software/gnome-bluetooth/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	bluez-libs-devel >= 2.25
 BuildRequires:	glib2-devel >= 1:2.12.4
 BuildRequires:	gtk-doc >= 1.7
-BuildRequires:	intltool >= 0.35
+BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libtool
 BuildRequires:	openobex-devel >= 1.2
 BuildRequires:	pkgconfig
