@@ -6,7 +6,7 @@
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Bluetooth GObject based library
-Summary(pl):	Biblioteka do programowania urz±dzeñ Bluetooth
+Summary(pl.UTF-8):   Biblioteka do programowania urzÄ…dzeÅ„ Bluetooth
 Name:		libbtctl
 Version:	0.8.2
 Release:	1
@@ -32,12 +32,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 This package contains a library to control Bluetooth devices.
 
-%description -l pl
-Ten pakiet zawiera bibliotekê do kontrolowania urz±dzeñ Bluetooth.
+%description -l pl.UTF-8
+Ten pakiet zawiera bibliotekÄ™ do kontrolowania urzÄ…dzeÅ„ Bluetooth.
 
 %package devel
 Summary:	Header files for libbtctl library
-Summary(pl):	Pliki nag³ówkowe biblioteki libbtctl
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe biblioteki libbtctl
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	bluez-libs-devel >= 2.25
@@ -47,24 +47,24 @@ Requires:	openobex-devel >= 1.2
 %description devel
 Header files for libbtctl library.
 
-%description devel -l pl
-Pliki nag³ówkowe biblioteki libbtctl.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe biblioteki libbtctl.
 
 %package static
 Summary:	Static libbtctl library
-Summary(pl):	Statyczna biblioteka libbtctl
+Summary(pl.UTF-8):   Statyczna biblioteka libbtctl
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libbtctl library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka libbtctl.
 
 %package -n python-btctl
 Summary:	Python bindings for libbtctl library
-Summary(pl):	Wi±zania dla jêzyka Python biblioteki libbtctl
+Summary(pl.UTF-8):   WiÄ…zania dla jÄ™zyka Python biblioteki libbtctl
 Group:		Libraries/Python
 Requires:	%{name} = %{version}-%{release}
 %pyrequires_eq	python-libs
@@ -72,8 +72,8 @@ Requires:	%{name} = %{version}-%{release}
 %description -n python-btctl
 Static libbtctl library.
 
-%description -n python-btctl -l pl
-Wi±zania dla jêzyka Python biblioteki libbtctl.
+%description -n python-btctl -l pl.UTF-8
+WiÄ…zania dla jÄ™zyka Python biblioteki libbtctl.
 
 %prep
 %setup -q
