@@ -6,7 +6,7 @@
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Bluetooth GObject based library
-Summary(pl.UTF-8):   Biblioteka do programowania urządzeń Bluetooth
+Summary(pl.UTF-8):	Biblioteka do programowania urządzeń Bluetooth
 Name:		libbtctl
 Version:	0.8.2
 Release:	1
@@ -37,7 +37,7 @@ Ten pakiet zawiera bibliotekę do kontrolowania urządzeń Bluetooth.
 
 %package devel
 Summary:	Header files for libbtctl library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki libbtctl
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libbtctl
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	bluez-libs-devel >= 2.25
@@ -52,7 +52,7 @@ Pliki nagłówkowe biblioteki libbtctl.
 
 %package static
 Summary:	Static libbtctl library
-Summary(pl.UTF-8):   Statyczna biblioteka libbtctl
+Summary(pl.UTF-8):	Statyczna biblioteka libbtctl
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -64,7 +64,7 @@ Statyczna biblioteka libbtctl.
 
 %package -n python-btctl
 Summary:	Python bindings for libbtctl library
-Summary(pl.UTF-8):   Wiązania dla języka Python biblioteki libbtctl
+Summary(pl.UTF-8):	Wiązania dla języka Python biblioteki libbtctl
 Group:		Libraries/Python
 Requires:	%{name} = %{version}-%{release}
 %pyrequires_eq	python-libs
