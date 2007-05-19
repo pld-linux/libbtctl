@@ -3,13 +3,14 @@
 # - mono bindings (build crashes on ppc)
 #
 # Conditional build:
+%bcond_without	apidocs		# disable gtk-doc
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Bluetooth GObject based library
 Summary(pl.UTF-8):	Biblioteka do programowania urządzeń Bluetooth
 Name:		libbtctl
 Version:	0.8.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbtctl/0.8/%{name}-%{version}.tar.bz2
@@ -19,7 +20,7 @@ BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	bluez-libs-devel >= 2.25
 BuildRequires:	glib2-devel >= 1:2.12.4
-BuildRequires:	gtk-doc >= 1.7
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.7}
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libtool
 BuildRequires:	openobex-devel >= 1.2
@@ -75,6 +76,18 @@ Static libbtctl library.
 %description -n python-btctl -l pl.UTF-8
 Wiązania dla języka Python biblioteki libbtctl.
 
+%package apidocs
+Summary:	libbtctl API documentation
+Summary(pl.UTF-8):	Dokumentacja API libbtctl
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+libbtctl API documentation.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API libbtctl.
+
 %prep
 %setup -q
 
@@ -86,7 +99,7 @@ Wiązania dla języka Python biblioteki libbtctl.
 %{__automake}
 %configure \
 	--disable-mono \
-	--enable-gtk-doc \
+	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
 	--with-html-path=%{_gtkdocdir} \
 	%{!?with_static_libs:--disable-static}
 %{__make} \
@@ -101,6 +114,8 @@ rm -rf $RPM_BUILD_ROOT
 	pydir=%{py_sitedir}
 
 rm -f $RPM_BUILD_ROOT%{py_sitedir}/*.{la,a}
+
+%{!?with_apidocs:rm -rf $RPM_BUILD_ROOT%{_gtkdocdir}}
 
 %find_lang %{name}
 
@@ -121,7 +136,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.la
 %{_includedir}/%{name}
 %{_pkgconfigdir}/*.pc
-%{_gtkdocdir}/*
 
 %if %{with static_libs}
 %files static
@@ -132,3 +146,9 @@ rm -rf $RPM_BUILD_ROOT
 %files -n python-btctl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{py_sitedir}/*.so
+
+%if %{with apidocs}
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/libbtctl
+%endif
