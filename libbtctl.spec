@@ -102,7 +102,7 @@ Dokumentacja API libbtctl.
 	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
 	--with-html-path=%{_gtkdocdir} \
 	%{!?with_static_libs:--disable-static}
-%{__make} \
+%{__make} -j1 \
 	pydir=%{py_sitedir}
 
 %install
