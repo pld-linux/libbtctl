@@ -15,6 +15,7 @@ License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbtctl/0.9/%{name}-%{version}.tar.bz2
 # Source0-md5:	e0600276046ac3c1d839fb54cff117e2
+Patch0:		%{name}-make-jN.patch
 URL:		http://usefulinc.com/software/gnome-bluetooth/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
@@ -27,6 +28,7 @@ BuildRequires:	openobex-devel >= 1.2
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel >= 1:2.3
 BuildRequires:	python-pygtk-devel >= 2.10.3
+BuildRequires:	rpm-pythonprov
 Requires:	bluez-libs >= 2.25
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -90,6 +92,7 @@ Dokumentacja API libbtctl.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -102,7 +105,7 @@ Dokumentacja API libbtctl.
 	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
 	--with-html-path=%{_gtkdocdir} \
 	%{!?with_static_libs:--disable-static}
-%{__make} -j1 \
+%{__make} \
 	pydir=%{py_sitedir}
 
 %install
