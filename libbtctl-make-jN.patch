@@ -1,0 +1,36 @@
+--- libbtctl-0.9.0/src/Makefile.am~	2007-03-06 00:07:20.000000000 +0100
++++ libbtctl-0.9.0/src/Makefile.am	2007-12-19 00:18:56.483397750 +0100
+@@ -37,27 +37,27 @@
+ 	libbtctl.la \
+ 	$(BTCTL_LIBS) $(BLUETOOTH_LIBS) $(OPENOBEX_LIBS)
+ 
+-btctl_async_test_LDFLAGS= \
++btctl_async_test_LDADD= \
+ 	libbtctl.la  $(BTCTL_LIBS) \
+ 	$(BLUETOOTH_LIBS) $(OPENOBEX_LIBS)
+ 
+-btobexclient_test_LDFLAGS= \
++btobexclient_test_LDADD= \
+ 	libbtctl.la  $(BTCTL_LIBS) \
+ 	$(BLUETOOTH_LIBS) $(OPENOBEX_LIBS)
+ 
+-btobex_test_LDFLAGS= \
++btobex_test_LDADD= \
+ 	libbtctl.la  $(BTCTL_LIBS) \
+ 	$(BLUETOOTH_LIBS) $(OPENOBEX_LIBS)
+ 
+-btctl_discovery_test_LDFLAGS= \
++btctl_discovery_test_LDADD= \
+ 	libbtctl.la  $(BTCTL_LIBS) \
+ 	$(BLUETOOTH_LIBS) $(OPENOBEX_LIBS)
+ 
+-btlist_LDFLAGS = \
++btlist_LDADD = \
+ 	libbtctl.la  $(BTCTL_LIBS) \
+ 	$(BLUETOOTH_LIBS) $(OPENOBEX_LIBS)
+ 
+-btsignal_watch_LDFLAGS = \
++btsignal_watch_LDADD = \
+ 	libbtctl.la $(BTCTL_LIBS) \
+ 	$(BLUETOOTH_LIBS) $(OPENOBEX_LIBS)
+ 
