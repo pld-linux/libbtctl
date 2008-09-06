@@ -10,12 +10,13 @@ Summary:	Bluetooth GObject based library
 Summary(pl.UTF-8):	Biblioteka do programowania urządzeń Bluetooth
 Name:		libbtctl
 Version:	0.10.0
-Release:	2
+Release:	3
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbtctl/0.10/%{name}-%{version}.tar.bz2
 # Source0-md5:	83d5f90efb2b26d1bd12a668940d02ba
 Patch0:		%{name}-make-jN.patch
+Patch1:		%{name}-newapi.patch
 URL:		http://usefulinc.com/software/gnome-bluetooth/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
@@ -93,6 +94,7 @@ Dokumentacja API libbtctl.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -131,24 +133,25 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libbtctl.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libbtctl.so.4
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
+%attr(755,root,root) %{_libdir}/libbtctl.so
+%{_libdir}/libbtctl.la
 %{_includedir}/%{name}
-%{_pkgconfigdir}/*.pc
+%{_pkgconfigdir}/libbtctl.pc
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libbtctl.a
 %endif
 
 %files -n python-btctl
 %defattr(644,root,root,755)
-%attr(755,root,root) %{py_sitedir}/*.so
+%attr(755,root,root) %{py_sitedir}/btctl.so
 
 %if %{with apidocs}
 %files apidocs
