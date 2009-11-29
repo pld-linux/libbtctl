@@ -21,6 +21,8 @@ URL:		http://usefulinc.com/software/gnome-bluetooth/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	bluez-libs-devel >= 2.25
+BuildRequires:	docbook-dtd412-xml
+BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.12.4
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.7}
 BuildRequires:	intltool >= 0.35.0
