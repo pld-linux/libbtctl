@@ -5,12 +5,12 @@
 # Conditional build:
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_without	static_libs	# don't build static library
-#
+
 Summary:	Bluetooth GObject based library
 Summary(pl.UTF-8):	Biblioteka do programowania urządzeń Bluetooth
 Name:		libbtctl
 Version:	0.10.0
-Release:	8
+Release:	9
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbtctl/0.10/%{name}-%{version}.tar.bz2
@@ -73,7 +73,7 @@ Summary:	Python bindings for libbtctl library
 Summary(pl.UTF-8):	Wiązania dla języka Python biblioteki libbtctl
 Group:		Libraries/Python
 Requires:	%{name} = %{version}-%{release}
-%pyrequires_eq	python-libs
+Requires:	python-libs
 
 %description -n python-btctl
 Static libbtctl library.
@@ -86,6 +86,9 @@ Summary:	libbtctl API documentation
 Summary(pl.UTF-8):	Dokumentacja API libbtctl
 Group:		Documentation
 Requires:	gtk-doc-common
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 libbtctl API documentation.
