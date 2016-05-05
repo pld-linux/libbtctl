@@ -1,0 +1,11 @@
+--- libbtctl-0.10.0/src/btctlimpl.c~	2016-05-05 18:59:50.000000000 +0200
++++ libbtctl-0.10.0/src/btctlimpl.c	2016-05-05 19:02:34.549483462 +0200
+@@ -436,7 +436,7 @@
+ 		if (*err) {
+ 			g_set_error (err, BTCTL_ERROR,
+ 			     BTCTL_ERROR_SERVICE_SEARCH_FAILED,
+-			     g_strdup_printf(_("Service search failed on device %s"), str));
++			     _("Service search failed on device %s"), str);
+ 		}
+ 		sdp_close(sess);
+ 		return -1;
