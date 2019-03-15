@@ -3,14 +3,14 @@
 # - mono bindings (build crashes on ppc)
 #
 # Conditional build:
-%bcond_without	apidocs		# disable gtk-doc
+%bcond_with	apidocs		# enable gtk-doc
 %bcond_without	static_libs	# don't build static library
 
 Summary:	Bluetooth GObject based library
 Summary(pl.UTF-8):	Biblioteka do programowania urządzeń Bluetooth
 Name:		libbtctl
 Version:	0.10.0
-Release:	10
+Release:	11
 License:	GPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbtctl/0.10/%{name}-%{version}.tar.bz2
