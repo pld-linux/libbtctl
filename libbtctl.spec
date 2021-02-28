@@ -88,9 +88,7 @@ Summary:	libbtctl API documentation
 Summary(pl.UTF-8):	Dokumentacja API libbtctl
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 libbtctl API documentation.
