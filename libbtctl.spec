@@ -22,12 +22,13 @@ Patch3:		format-security.patch
 # dead
 #URL:		http://usefulinc.com/software/gnome-bluetooth/
 BuildRequires:	autoconf >= 2.52
-BuildRequires:	automake
+BuildRequires:	automake >= 1:1.9
 BuildRequires:	bluez-libs-devel >= 2.25
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.12.4
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.7}
+BuildRequires:	gtk+2-devel >= 1:2.0
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libtool
 BuildRequires:	openobex-devel >= 1.2
@@ -140,7 +141,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README
+%doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_libdir}/libbtctl.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libbtctl.so.4
 
