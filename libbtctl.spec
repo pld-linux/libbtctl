@@ -3,8 +3,8 @@
 # - mono bindings (build crashes on ppc)
 #
 # Conditional build:
-%bcond_with	apidocs		# enable gtk-doc
-%bcond_without	static_libs	# don't build static library
+%bcond_with	apidocs		# gtk-doc based API documentation
+%bcond_without	static_libs	# static library
 
 Summary:	Bluetooth GObject based library
 Summary(pl.UTF-8):	Biblioteka do programowania urządzeń Bluetooth
@@ -13,13 +13,14 @@ Version:	0.10.0
 Release:	12
 License:	GPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libbtctl/0.10/%{name}-%{version}.tar.bz2
+Source0:	https://download.gnome.org/sources/libbtctl/0.10/%{name}-%{version}.tar.bz2
 # Source0-md5:	83d5f90efb2b26d1bd12a668940d02ba
 Patch0:		%{name}-make-jN.patch
 Patch1:		%{name}-newapi.patch
 Patch2:		glib.patch
 Patch3:		format-security.patch
-URL:		http://usefulinc.com/software/gnome-bluetooth/
+# dead
+#URL:		http://usefulinc.com/software/gnome-bluetooth/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	bluez-libs-devel >= 2.25
