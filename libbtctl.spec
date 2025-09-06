@@ -11,7 +11,8 @@ Summary(pl.UTF-8):	Biblioteka do programowania urządzeń Bluetooth
 Name:		libbtctl
 Version:	0.10.0
 Release:	12
-License:	GPL
+# most code is LGPL v2.1+ but obexsdp.c is GPL v2+
+License:	GPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/libbtctl/0.10/%{name}-%{version}.tar.bz2
 # Source0-md5:	83d5f90efb2b26d1bd12a668940d02ba
