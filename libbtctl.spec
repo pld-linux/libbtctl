@@ -10,7 +10,7 @@ Summary:	Bluetooth GObject based library
 Summary(pl.UTF-8):	Biblioteka do programowania urządzeń Bluetooth
 Name:		libbtctl
 Version:	0.11.1
-Release:	1
+Release:	2
 # most code is LGPL v2.1+ but obexsdp.c is GPL v2+
 License:	GPL v2+
 Group:		Libraries
@@ -113,6 +113,7 @@ Dokumentacja API libbtctl.
 %{__autoheader}
 %{__automake}
 %configure \
+	PYTHON="%{__python}" \
 	--enable-gtk-doc%{!?with_apidocs:=no} \
 	--disable-mono \
 	%{!?with_static_libs:--disable-static} \
