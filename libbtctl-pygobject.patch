@@ -1,0 +1,10 @@
+--- libbtctl-0.11.1/src/Makefile.am.orig	2008-08-28 17:31:03.000000000 +0200
++++ libbtctl-0.11.1/src/Makefile.am	2025-09-06 19:26:55.984797930 +0200
+@@ -123,6 +123,7 @@ btctl-py.c: btctl.defs btctl.override
+ 	btctl.defs > $@
+ 
+ btctl_la_SOURCES = btctl-py.c btctl-pymodule.c
++btctl_la_CFLAGS = -fcommon
+ btctl_la_LIBADD = libbtctl.la
+ btctl_la_LDFLAGS = -module -avoid-version
+ btctl_la_LIBADD = $(BTCTLPY_LIBS)

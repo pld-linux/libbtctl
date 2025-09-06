@@ -3,28 +3,28 @@
 # - mono bindings (build crashes on ppc)
 #
 # Conditional build:
-%bcond_with	apidocs		# gtk-doc based API documentation
+%bcond_without	apidocs		# gtk-doc based API documentation
 %bcond_without	static_libs	# static library
 
 Summary:	Bluetooth GObject based library
 Summary(pl.UTF-8):	Biblioteka do programowania urządzeń Bluetooth
 Name:		libbtctl
-Version:	0.10.0
-Release:	12
+Version:	0.11.1
+Release:	1
 # most code is LGPL v2.1+ but obexsdp.c is GPL v2+
 License:	GPL v2+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/libbtctl/0.10/%{name}-%{version}.tar.bz2
-# Source0-md5:	83d5f90efb2b26d1bd12a668940d02ba
-Patch0:		%{name}-make-jN.patch
-Patch1:		%{name}-newapi.patch
-Patch2:		glib.patch
+Source0:	https://download.gnome.org/sources/libbtctl/0.11/%{name}-%{version}.tar.bz2
+# Source0-md5:	5b5ab9e71dd5428c4e5c45cbf581a384
+Patch0:		%{name}-openobex.patch
+Patch1:		%{name}-pygobject.patch
+Patch2:		%{name}-gtkdoc.patch
 Patch3:		format-security.patch
 # dead
 #URL:		http://usefulinc.com/software/gnome-bluetooth/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	bluez-libs-devel >= 2.25
+BuildRequires:	bluez-libs-devel >= 4.0
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.12.4
@@ -37,7 +37,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	python-devel >= 1:2.3
 BuildRequires:	python-pygtk-devel >= 2.10.3
 BuildRequires:	rpm-pythonprov
-Requires:	bluez-libs >= 2.25
+Requires:	bluez-libs >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -51,7 +51,7 @@ Summary:	Header files for libbtctl library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libbtctl
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	bluez-libs-devel >= 2.25
+Requires:	bluez-libs-devel >= 4.0
 Requires:	glib2-devel >= 1:2.12.4
 Requires:	openobex-devel >= 1.2
 
@@ -109,14 +109,15 @@ Dokumentacja API libbtctl.
 %build
 %{__libtoolize}
 %{__aclocal}
-%{__autoheader}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure \
+	--enable-gtk-doc%{!?with_apidocs:=no} \
 	--disable-mono \
-	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
-	--with-html-path=%{_gtkdocdir} \
-	%{!?with_static_libs:--disable-static}
+	%{!?with_static_libs:--disable-static} \
+	--with-html-path=%{_gtkdocdir}
+
 %{__make} \
 	pydir=%{py_sitedir}
 
@@ -128,9 +129,16 @@ rm -rf $RPM_BUILD_ROOT
 	HTML_DIR=%{_gtkdocdir} \
 	pydir=%{py_sitedir}
 
-rm -f $RPM_BUILD_ROOT%{py_sitedir}/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/*.la
+%if %{with static_libs}
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/*.a
+%endif
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libbtctl.la
 
-%{!?with_apidocs:rm -rf $RPM_BUILD_ROOT%{_gtkdocdir}}
+%if %{without apidocs}
+%{__rm} -rf $RPM_BUILD_ROOT%{_gtkdocdir}
+%endif
 
 %find_lang %{name}
 
@@ -144,13 +152,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_libdir}/libbtctl.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libbtctl.so.4
+%ghost %{_libdir}/libbtctl.so.6
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libbtctl.so
-%{_libdir}/libbtctl.la
-%{_includedir}/%{name}
+%{_libdir}/libbtctl.so
+%{_includedir}/libbtctl
 %{_pkgconfigdir}/libbtctl.pc
 
 %if %{with static_libs}

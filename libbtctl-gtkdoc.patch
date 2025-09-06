@@ -1,0 +1,19 @@
+--- libbtctl-0.11.1/docs/reference/Makefile.am.orig	2007-03-06 00:07:20.000000000 +0100
++++ libbtctl-0.11.1/docs/reference/Makefile.am	2025-09-06 19:59:12.344307770 +0200
+@@ -133,7 +133,6 @@ tmpl-build.stamp: $(DOC_MODULE)-decl.txt
+ 	for x in $(DOC_MODULE)-decl.txt $(DOC_MODULE)-sections.txt; do \
+ 		test -f $$x || cp $(srcdir)/$$x $$x; \
+ 	done
+-	cd $(blddir) && gtkdoc-mktmpl --module=$(DOC_MODULE)
+ 	touch tmpl-build.stamp
+ 
+ tmpl.stamp: tmpl-build.stamp
+@@ -158,7 +157,7 @@ html-build.stamp: sgml.stamp $(DOC_MAIN_
+ 	cd $(blddir)/html && gtkdoc-mkhtml $(DOC_MODULE) ../$(DOC_MAIN_SGML_FILE)
+ 	test "x$(HTML_IMAGES)" = "x" || ( cd $(blddir) && cp $(HTML_IMAGES) html )
+ 	@echo '-- Fixing Crossreferences' 
+-	cd $(blddir) && gtkdoc-fixxref --module-dir=html --html-dir=$(HTML_DIR) $(FIXXREF_OPTIONS)
++	cd $(blddir) && gtkdoc-fixxref --module-dir=html --html-dir=$(HTML_DIR) --module=$(DOC_MODULE) $(FIXXREF_OPTIONS)
+ 	touch html-build.stamp
+ endif
+ 

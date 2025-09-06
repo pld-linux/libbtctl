@@ -1,0 +1,77 @@
+--- libbtctl-0.11.1/src/btobex.c.orig	2007-07-24 16:53:51.000000000 +0200
++++ libbtctl-0.11.1/src/btobex.c	2025-09-06 19:14:17.315574660 +0200
+@@ -30,6 +30,26 @@
+ #include "btctl-marshal.h"
+ #include "obexsdp.h"
+ 
++static int priv_OBEX_UnicodeToChar(uint8_t *c, const uint8_t *uc, int size)
++{
++	int n;
++
++	if (uc == NULL || c == NULL)
++		return -1;
++
++	/* Make sure buffer is big enough! */
++	for (n = 0; uc[n*2+1] != 0; n++);
++
++	if (n >= size)
++		return -1;
++
++	for (n = 0; uc[n*2+1] != 0; n++)
++		c[n] = uc[n*2+1];
++	c[n] = 0;
++
++	return 0;
++}
++
+ static gpointer		 parent_class = NULL;
+ 
+ /* gtk object prototypes */
+@@ -310,7 +330,7 @@ put_done (BtctlObex *bo, BtctlObexserver
+ 				if ((namebuf = g_new0 (gchar, hlen/2))) {
+ 					/* FIXME: figure out which encoding of unicode is
+ 					 * being used and handle it properly */
+-					OBEX_UnicodeToChar (namebuf, hv.bs, hlen);
++					priv_OBEX_UnicodeToChar (namebuf, hv.bs, hlen);
+ 					name = namebuf;
+ 				}
+ 				break;
+--- libbtctl-0.11.1/src/obex-client-source.c.orig	2007-03-06 00:07:19.000000000 +0100
++++ libbtctl-0.11.1/src/obex-client-source.c	2025-09-06 19:15:58.815024791 +0200
+@@ -37,6 +37,27 @@
+ 
+ #define OBEX_STREAM_CHUNK       4096
+ 
++static int priv_OBEX_CharToUnicode(uint8_t *uc, const uint8_t *c, int size)
++{
++	int len, n;
++
++	if (uc == NULL || c == NULL)
++		return -1;
++
++	len = n = strlen((char *) c);
++	if (n*2+2 > size)
++		return -1;
++
++	uc[n*2+1] = 0;
++	uc[n*2] = 0;
++
++	while (n--) {
++		uc[n*2+1] = c[n];
++		uc[n*2] = 0;
++	}
++
++	return (len * 2) + 2;
++}
+ /* GSourceFuncs */
+ 
+ static gboolean btctl_obexclient_source_prepare (GSource *source, gint *timeout);
+@@ -327,7 +348,7 @@ btctl_obexclient_source_push (BtctlObexc
+ 	bfname = g_path_get_basename (fname);
+ 	uname_size = (strlen (bfname)+1)*2;
+ 	uname = g_malloc (uname_size);
+-	OBEX_CharToUnicode (uname, bfname, uname_size);
++	priv_OBEX_CharToUnicode (uname, bfname, uname_size);
+ 
+ 	hd.bs = uname;
+ 	OBEX_ObjectAddHeader (bc->handle, object,
