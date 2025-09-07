@@ -1,0 +1,14 @@
+--- libbtctl-0.11.1/src/btctl.c.orig	2007-03-06 00:07:20.000000000 +0100
++++ libbtctl-0.11.1/src/btctl.c	2025-09-07 07:16:37.016564226 +0200
+@@ -28,6 +28,11 @@
+ #include "btctlimpl.h"
+ #include "btctl-marshal.h"
+ 
++void
++btctl_controller_impl_set_hci_device(BtctlController *bc,
++				     const char *hci_device,
++				     GError **err);
++
+ static gpointer         parent_class = NULL;
+ 
+ /* gobject prototypes */
